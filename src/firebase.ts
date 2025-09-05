@@ -45,11 +45,19 @@ if (!isFirebaseConfigured) {
   } catch {}
 }
 
-const app = getApps().length ? getApp() : initializeApp(firebaseConfig)
-export const auth = getAuth(app)
+let app
+if (getApps().length) {
+  app = getApp()
+} else if (isFirebaseConfigured) {
+  app = initializeApp(firebaseConfig)
+} else {
+  app = undefined as any
+}
+
+export const auth = app ? getAuth(app) : null as any
 export const googleProvider = new GoogleAuthProvider()
 try { googleProvider.setCustomParameters({ prompt: 'select_account' }) } catch {}
-export const db = getFirestore(app)
+export const db = app ? getFirestore(app) : null as any
 
 export { isFirebaseConfigured, missingFirebaseKeys }
 export default app
