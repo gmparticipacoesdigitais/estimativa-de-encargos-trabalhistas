@@ -17,7 +17,8 @@ export function AuthProvider({ children }) {
       if (u) {
         try {
           const token = await u.getIdToken()
-          const resp = await fetch('/api/session/ensure', {
+          const base = import.meta.env.VITE_PUBLIC_BASE_URL || ''
+          const resp = await fetch(`${base}/api/session/ensure`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
             body: JSON.stringify({ displayName: u.displayName || null, photoURL: u.photoURL || null }),
@@ -67,7 +68,8 @@ export function AuthProvider({ children }) {
       await saveProfile(u.uid, { email: u.email, name: u.displayName || '', photoURL: u.photoURL || '' })
       try {
         const token = await u.getIdToken()
-        await fetch('/api/session/ensure', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } })
+        const base = import.meta.env.VITE_PUBLIC_BASE_URL || ''
+        await fetch(`${base}/api/session/ensure`, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } })
       } catch {}
       return u
     } catch (err) {

@@ -28,9 +28,10 @@ export default function AuthGate({ children }) {
       if (!user) { window.location.assign('/login'); return }
       try {
         const idToken = await user.getIdToken()
+        const base = import.meta.env.VITE_PUBLIC_BASE_URL || ''
         // Ensure profile + claims (tenantId) before gating
-        try { await fetch('/api/session/ensure', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${idToken}` } }) } catch {}
-        const res = await fetch('/api/bootstrap', { headers: { Authorization: `Bearer ${idToken}` } })
+        try { await fetch(`${base}/api/session/ensure`, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${idToken}` } }) } catch {}
+        const res = await fetch(`${base}/api/bootstrap`, { headers: { Authorization: `Bearer ${idToken}` } })
         if (!res.ok) {
           await logout().catch(() => {})
           window.location.assign('/login')

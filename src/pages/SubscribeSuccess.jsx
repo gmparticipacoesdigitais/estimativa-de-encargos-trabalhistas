@@ -10,7 +10,8 @@ export default function SubscribeSuccess() {
     const run = async () => {
       try {
         const idToken = await user.getIdToken()
-        const res = await fetch('/api/bootstrap', { headers: { Authorization: `Bearer ${idToken}` } })
+        const base = import.meta.env.VITE_PUBLIC_BASE_URL || ''
+        const res = await fetch(`${base}/api/bootstrap`, { headers: { Authorization: `Bearer ${idToken}` } })
         const data = await res.json().catch(() => ({}))
         if (!res.ok) throw new Error(data.error || 'Falha ao validar assinatura')
         if (data.subscription?.active) {
@@ -47,4 +48,3 @@ export default function SubscribeSuccess() {
     </div>
   )
 }
-
