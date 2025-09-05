@@ -1,0 +1,28 @@
+# Node / builds
+node_modules
+dist
+.vite
+coverage
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Logs / caches
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.eslintcache
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+
+# Firebase local artifacts
+.firebase/
+
+# Misc
+build-*.zip
+*.local

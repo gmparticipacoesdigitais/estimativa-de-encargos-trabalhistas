@@ -1,0 +1,60 @@
+{
+  "name": "calculo-encargos-trabalhistas",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20 <23"
+  },
+  "scripts": {
+    "dev": "vite",
+    "server": "node server/index.js",
+    "dev:full": "concurrently -k -n server,web -c magenta,cyan \"npm:server\" \"npm:dev\"",
+    "dev:auto": "vite --open --host --strictPort=false --port 0",
+    "dev:emulators": "firebase emulators:start --import=./.seed --export-on-exit",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test": "vitest --run",
+    "preview:auto": "npm run build && vite preview --open --host --strictPort=false --port 0",
+    "check:env": "node scripts/check-env.js"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "autoprefixer": "^10.4.20",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "firebase": "^12.2.1",
+    "firebase-admin": "^12.6.0",
+    "pino": "^9.5.0",
+    "postcss": "^8.5.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.8.2",
+    "recharts": "^2.15.4",
+    "stripe": "^16.5.0",
+    "tailwindcss": "^4.0.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@tailwindcss/postcss": "^4.1.12",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.19.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.18",
+    "globals": "^15.14.0",
+    "playwright": "^1.47.2",
+    "supertest": "^7.1.1",
+    "vite": "^6.1.0",
+    "vitest": "^3.2.4"
+  },
+  "overrides": {}
+}

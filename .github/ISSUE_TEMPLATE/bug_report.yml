@@ -1,0 +1,32 @@
+name: Bug Report
+description: Reporte um problema ou comportamento inesperado
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição
+      description: O que aconteceu? O que você esperava que acontecesse?
+      placeholder: Descreva claramente o problema.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para reproduzir
+      description: Liste os passos para reproduzir o problema
+      placeholder: 1) ... 2) ... 3) ...
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versão
+      description: Informe a versão/commit se aplicável
+      placeholder: vX.Y.Z ou SHA
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs/prints
+      description: Cole logs relevantes ou adicione prints
+
