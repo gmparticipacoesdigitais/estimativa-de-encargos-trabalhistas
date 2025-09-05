@@ -1,9 +1,15 @@
-export async function createCheckoutSession({ priceId, quantity = 1, mode = 'payment', successPath = '/', cancelPath = '/' } = {}) {
+import { auth } from '../firebase'
+
+export async function createCheckoutSession({ priceId } = {}) {
   const base = import.meta.env.VITE_PUBLIC_BASE_URL || ''
-  const res = await fetch(`${base}/api/checkout/session`, {
+  const token = await auth?.currentUser?.getIdToken?.()
+  const res = await fetch(`${base}/api/stripe/checkout`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ priceId, quantity, mode, successPath, cancelPath })
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    body: JSON.stringify({ priceId })
   })
   if (!res.ok) {
     const err = await res.json().catch(() => ({}))
@@ -17,4 +23,3 @@ export async function startCheckout(opts = {}) {
   if (!url) throw new Error('Stripe não retornou URL de checkout')
   window.location.href = url
 }
-
