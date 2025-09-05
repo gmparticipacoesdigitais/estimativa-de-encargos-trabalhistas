@@ -180,7 +180,7 @@ export default function AuthPage() {
                   Passos para corrigir no Firebase Console:
                 </div>
                 <ol className="caption" style={{ color: 'var(--color-ink-soft)' }}>
-                  <li>a) Habilitar Email/Senha e Google em Authentication > Método de login</li>
+                  <li>a) Habilitar Email/Senha e Google em Authentication &gt; Método de login</li>
                   <li>b) Adicionar 'localhost' em Domínios autorizados</li>
                   <li>c) Reiniciar o servidor de desenvolvimento</li>
                 </ol>
